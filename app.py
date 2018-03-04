@@ -42,10 +42,10 @@ def getalltasks():
         recs.append({"title": r[0], "description": r[1], "done": str(r[2])})
     return jsonify({'status': 'ok', 'entries': recs, 'count': len(recs)})
 
-@app.route('/delete/<string:id>/')
-def deletetask(id):
+@app.route('/delete/<string:title>/')
+def deletetask(title):
 
-    res = spcall("deletetask", (id), True)
+    res = spcall("deletetask", (title), True)
 
     if 'Error' in res[0][0]:
         return jsonify({'status': 'error', 'message': res[0][0]})

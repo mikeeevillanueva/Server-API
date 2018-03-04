@@ -24,16 +24,16 @@ $$
 $$
  language 'plpgsql';
 
-create or replace function deletetask(par_id int8) returns text as
+create or replace function deletetask(par_title text) returns text as
 $$
   declare
-    loc_id INT;
+    loc_title INT;
     loc_res TEXT;
   begin
-     select into loc_id id from tasks where tasks.id = par_id;
-     if loc_id notnull then
+     select into loc_title title from tasks where tasks.title = par_title;
+     if loc_title notnull then
 
-       DELETE from tasks WHERE id = loc_id;
+       DELETE from tasks WHERE title = loc_title;
        loc_res = 'OK';
 
      else
